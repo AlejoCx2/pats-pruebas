@@ -9,4 +9,5 @@ Currently, two official plugins are available:
 
 
 Run tailwind: npx tailwindcss -i ./src/index.css -o ./src/output.css --watch
+
 Run react: npm run dev

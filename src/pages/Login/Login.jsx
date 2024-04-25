@@ -5,15 +5,19 @@ function Login() {
                 <div>
                     Title
                 </div>
-                <div>
+                <p className="my-2 font-bold">
                     Login into your account
-                </div>
-                <form className="flex flex-col">
-                    <label htmlFor="user_name_input">Correo electrónico</label>
-                    <input className="bg-slate-200 rounded-md outline-offset-2 outline-gray-400" placeholder="james.cardona@senthia.com" type="text" name="username" id="user_name_input" />
-                    <label htmlFor="password_input">Contraseña</label>
-                    <input className="bg-slate-200 rounded-md outline-offset-2 outline-gray-400" placeholder="Ingrese su contraseña" type="password" name="password" id="password_input" />
+                </p>
+                <form className="flex flex-col w-5/6 p-2">
+                    <label htmlFor="user_name_input" className="mt-4">Correo electrónico</label>
+                    <input className="bg-slate-200 rounded-md outline-offset-2 outline-gray-400 mt-1 p-2" placeholder="james.cardona@senthia.com" type="text" name="username" id="user_name_input" />
+                    <label htmlFor="password_input" className="mt-4">Contraseña</label>
+                    <input className="bg-slate-200 rounded-md outline-offset-2 outline-gray-400 mt-1 p-2" placeholder="Ingrese su contraseña" type="password" name="password" id="password_input" />
+                    <a href="#" className="text-xs flex flex-row-reverse underline mt-2">Olvido su clave?</a>
                 </form>
+                <button style={{ backgroundColor: "#007F51" }} className="w-5/6 py-2 my-2 rounded-md font-bold text-white">
+                    Ingresar
+                </button>
                 <div className="flex items-center justify-center space-x-2">
                     <div className="flex-1 w-20 h-px bg-gray-300"></div>
                     <span className="text-gray-400">or</span>

@@ -4,7 +4,18 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        'senthia': {
+          50: '#66b296',
+          100: '#007F51',
+          200: '#006540',
+        },
+        'gray_senthia': '#F1F3F6'
+      },
+    },
   },
   plugins: [],
 }

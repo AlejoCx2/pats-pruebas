@@ -1,9 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Login/Login.jsx'
+import NotFound from './pages/NotFound.jsx'
+
+const router = createBrowserRouter([{
+  path:'/',
+  element: <Login />,
+  errorElement: <NotFound />
+}])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Login />
+    <RouterProvider router={router}/>
   </React.StrictMode>,
 )

@@ -13,6 +13,9 @@ export default {
           100: '#007F51',
           200: '#006540',
         },
+        'orange_senthia': {
+          100: '#D85341'
+        },
         'gray_senthia': '#F1F3F6'
       },
     },

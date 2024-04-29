@@ -1,5 +1,18 @@
 function Permissions() {
-    return(
-        <h1>Hello Permissions</h1>
+    return (
+        <>
+            <h1 className="text-3xl">Hello Permissions</h1>
+            <h1 className="text-3xl">Hello Permissions</h1>
+            <h1 className="text-3xl">Hello Permissions</h1>
+            <h1 className="text-3xl">Hello Permissions</h1>
+            <h1 className="text-3xl">Hello Permissions</h1>
+            <h1 className="text-3xl">Hello Permissions</h1>
+            <h1 className="text-3xl">Hello Permissions</h1>
+            <h1 className="text-3xl">Hello Permissions</h1>
+            <h1 className="text-3xl">Hello Permissions</h1>
+            <h1 className="text-3xl">Hello Permissions</h1>
+        </>
     )
 }
+
+export default Permissions

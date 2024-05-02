@@ -18,6 +18,9 @@ export default {
         },
         'gray_senthia': '#F1F3F6'
       },
+      fontFamily: {
+        'sans': ['Gilroy', 'ui-sans-serif', 'system-ui'],
+      },
     },
   },
   plugins: [],

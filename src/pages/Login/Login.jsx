@@ -4,7 +4,7 @@ function Login() {
   return (
     <div className="bg-gray_senthia flex flex-row h-screen w-screen justify-center items-center md:items-start">
       <div className="bg-white flex flex-none flex-col py-10 md:py-0 items-center justify-center w-96 h-fit md:h-screen shadow-xl">
-        <div>Title</div>
+        <div className="">Title</div>
         <span className="my-2 font-bold">Login into your account</span>
         <LoginForm />
         <div className="flex items-center justify-center space-x-2">
@@ -16,8 +16,9 @@ function Login() {
           Registrarse
         </button>
       </div>
-      <div className="hidden md:flex flex-auto h-screen bg-gray_senthia">
-        <p>Lorem</p>
+      <div className="hidden md:flex md:flex-col flex-auto items-center justify-center h-screen bg-gray_senthia">
+        <img className="w-96 rounded-full" src="src\assets\login.jpg" alt="" />
+        <a className="absolute bottom-0 right-0 underline" href="http://www.freepik.com">Designed by slidesgo / Freepik</a>
       </div>
     </div>
   );

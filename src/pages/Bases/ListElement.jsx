@@ -8,6 +8,8 @@ function ListElement({ title, icon, goTo="#", isSelected = false }) {
             <a
                 className="inline-flex items-center w-full text-sm font-semibold"
                 href={goTo}
+                target="_blank"
+                rel="noopener noreferrer"
             >
                 {icon}
                 <span className="ml-4">{title}</span>

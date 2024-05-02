@@ -1,4 +1,4 @@
-function ListElement({ title, icon, isSelected = false }) {
+function ListElement({ title, icon, goTo="#", isSelected = false }) {
     return (
         <li className="relative px-6 py-3 transition-colors duration-150 hover:bg-senthia-200">
             {isSelected && <span
@@ -7,7 +7,7 @@ function ListElement({ title, icon, isSelected = false }) {
             ></span>}
             <a
                 className="inline-flex items-center w-full text-sm font-semibold"
-                href="#"
+                href={goTo}
             >
                 {icon}
                 <span className="ml-4">{title}</span>

@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Dashboard",
+    "to": "",
+    "hasChildrens": false,
+    "childrens": []
+  },
+  {
+    "name": "Forms",
+    "to": "",
+    "hasChildrens": false,
+    "childrens": []
+  },
+  {
+    "name": "Ususarios",
+    "to": "#",
+    "hasChildrens": true,
+    "childrens": [
+      { "name": "Listar usuarios", "to": "" },
+      { "name": "Solicitar creación", "to": "solicit-user" },
+      { "name": "Aprobar creación", "to": "" },
+      { "name": "Crear usuario", "to": "" }
+    ]
+  },
+  {
+    "name": "Cards",
+    "to": "",
+    "hasChildrens": false,
+    "childrens": []
+  },
+  {
+    "name": "Charts",
+    "to": "",
+    "hasChildrens": false,
+    "childrens": []
+  },
+  {
+    "name": "Buttons",
+    "to": "",
+    "hasChildrens": false,
+    "childrens": []
+  }
+]

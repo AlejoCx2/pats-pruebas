@@ -1,9 +1,14 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { setUser } from "../../state/user/userSlice";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 function LoginForm() {
-    const navegate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false);
+  const navegate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -11,6 +16,7 @@ function LoginForm() {
   } = useForm();
 
   const onSubmit = handleSubmit((req_data) => {
+    setIsLoading(true);
     const options = {
       method: "POST", // Método HTTP
       headers: {
@@ -19,15 +25,23 @@ function LoginForm() {
       },
       body: JSON.stringify(req_data), // Convertimos el objeto de datos a un string JSON
     };
-    fetch("http://127.0.0.1:3000/PATS/login/", options)
+    fetch(import.meta.env.VITE_API_URL + "PATS/login/", options)
       .then((res) => res.json())
       .then((data) => {
         if (data.code === 0) {
-            toast.success(data.status)
-            navegate('/dashboard')
-            // Go to Dashboard
+          toast.success(data.status);
+          dispatch(
+            setUser({
+              auth: true,
+              name: "Test",
+              lastname: "Senthia",
+            })
+          );
+          navegate("/dashboard");
+          // Go to Dashboard
         } else {
-            toast.error(data.status)
+          setIsLoading(false);
+          toast.error(data.status);
         }
       })
       .catch((error) => {
@@ -108,9 +122,20 @@ function LoginForm() {
       </a>
       <button
         type="submit"
-        className="py-2 mt-5 mb-2 rounded-md font-bold bg-senthia-100 hover:bg-senthia-200 text-white shadow-md"
+        className="py-2 mt-5 mb-2 items-center rounded-md font-bold bg-senthia-100 hover:bg-senthia-200 text-white shadow-md"
+        disabled={isLoading}
       >
-        Ingresar
+        {isLoading ? (
+          <>
+            <div
+              className="inline-block mx-2 h-5 w-5 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+              role="status"
+            ></div>
+            Loading...
+          </>
+        ) : (
+          "Ingresar"
+        )}
       </button>
     </form>
   );

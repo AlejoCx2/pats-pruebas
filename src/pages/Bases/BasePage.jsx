@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import DesktopSideBar from "./DesktopSideBar"
+import DesktopSideBar from "../../components/SideBar/Desktop/DesktopSideBar"
 import TopBar from "./TopBar"
 
 function BasePage() {

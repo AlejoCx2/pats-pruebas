@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { setUser } from "../../state/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,23 +26,28 @@ function LoginForm() {
       },
       body: JSON.stringify(req_data), // Convertimos el objeto de datos a un string JSON
     };
-    fetch(import.meta.env.VITE_API_URL + "PATS/login/", options)
+    
+    fetch(import.meta.env.VITE_API_URL + "api/token/", options)
       .then((res) => res.json())
       .then((data) => {
-        if (data.code === 0) {
-          toast.success(data.status);
+        if (data.access){
+          const decode_JWT = jwtDecode(data.access)
+          localStorage.refresh = data.refresh
+          localStorage.access = data.access
           dispatch(
             setUser({
               auth: true,
-              name: "Test",
-              lastname: "Senthia",
+              name: decode_JWT.name,
+              roles: decode_JWT.roles,
+              permissions: decode_JWT.permissions,
+              jwt_access: data.access,
             })
           );
           navegate("/dashboard");
-          // Go to Dashboard
+          toast.success("Login Exitoso")
         } else {
           setIsLoading(false);
-          toast.error(data.status);
+          toast.error(data.detail);
         }
       })
       .catch((error) => {
@@ -82,7 +88,7 @@ function LoginForm() {
         </svg>
       </div>
       {errors.username && (
-        <span className="text-xs text-rose-600">*Campo requeerido</span>
+        <span className="text-xs text-rose-600">*Campo requerido</span>
       )}
       <label htmlFor="password_input" className="mt-4 text-sm">
         Contraseña
@@ -115,7 +121,7 @@ function LoginForm() {
         </svg>
       </div>
       {errors.password && (
-        <span className="text-xs text-rose-600">*Campo requeerido</span>
+        <span className="text-xs text-rose-600">*Campo requerido</span>
       )}
       <a href="#" className="text-xs flex flex-row-reverse underline mt-2">
         Olvido su clave?

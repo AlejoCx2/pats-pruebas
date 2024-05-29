@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cleanUser } from "../state/user/userSlice";
+import { cleanSelectedOption } from "../state/sideBar/selectedOptionSlice";
+import { cleanSelectedSubOption } from "../state/sideBar/selectedSubOptionSlice";
+import { cleanIsOpen } from "../state/sideBar/isOpenSlice";
 import { useNavigate } from "react-router-dom";
 import {
   ChevronDownIcon,
@@ -13,18 +16,16 @@ function UserButton() {
   const navegate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!user.auth) {
-      navegate("/");
-    }
-  }, []);
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleLogOut = () => {
     dispatch(cleanUser());
+    dispatch(cleanIsOpen());
+    dispatch(cleanSelectedOption());
+    dispatch(cleanSelectedSubOption());
+    localStorage.clear();
     navegate("/");
   };
 
@@ -39,7 +40,7 @@ function UserButton() {
         aria-label="Account"
         aria-haspopup="true"
       >
-        <span className="mx-2">{user.name + " " + user.lastname}</span>
+        <span className="mx-2">{user.name}</span>
         <img
           className="object-cover w-8 h-8 rounded-full"
           src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
@@ -56,7 +57,7 @@ function UserButton() {
       </button>
       {isOpen && (
         <div
-          className="absolute end-0 z-10 mt-1 w-40 rounded-md border bg-white shadow-lg"
+          className="absolute end-0 z-30 mt-1 w-40 rounded-md border bg-white shadow-lg"
           role="menu"
         >
           <div className="p-2">

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import SubListElement from "./SubListElement";
 import {
   HomeIcon,
@@ -18,7 +19,10 @@ function ListElement({
   onSelect,
   selectedSubOption,
   onSubSelect,
+  permissions,
 }) {
+  const userRoles = useSelector((state) => state.user.value.roles);
+  const userPermissions = useSelector((state) => state.user.value.permissions);
   const getIcon = (name) => {
     switch (name) {
       case "Dashboard":
@@ -38,13 +42,33 @@ function ListElement({
     }
   };
 
+  const hasPermissions = () => {
+    if (!permissions.roles.length) {
+      return true;
+    }
+    if (!permissions.roles.some((elemento) => userRoles.includes(elemento))) {
+      if (
+        !permissions.permissions.some((elemento) =>
+          userPermissions.includes(elemento)
+        )
+      ) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   return (
     <>
       <li
         className={
           isSelected
-            ? "text-green_senthia-100 relative transition-colors duration-150 bg-purple_senthia-200"
-            : "relative transition-colors duration-150 hover:bg-purple_senthia-200"
+            ? `text-green_senthia-100 relative transition-colors duration-150 bg-purple_senthia-200 ${
+                !hasPermissions() ? "hidden" : ''
+              }`
+            : `relative transition-colors duration-150 hover:bg-purple_senthia-200 ${
+                !hasPermissions() ? "hidden" : ''
+              }`
         }
         onClick={() => onSelect(option.name)}
       >
@@ -61,7 +85,9 @@ function ListElement({
         >
           {getIcon(option.name)}
           <span className="ml-4 grow">{option.name}</span>
-          {option.hasChildrens && <ChevronDownIcon className="mt-1 w-4 h-4 stroke-2"/>}
+          {option.hasChildrens && (
+            <ChevronDownIcon className="mt-1 w-4 h-4 stroke-2" />
+          )}
         </Link>
       </li>
       {isSelected && option.hasChildrens && (
@@ -72,6 +98,7 @@ function ListElement({
               subOption={subOption}
               isSelected={selectedSubOption === subOption.name}
               onSelect={onSubSelect}
+              permissions={permissions.childrens[subOption.name]}
             />
           ))}
         </ul>

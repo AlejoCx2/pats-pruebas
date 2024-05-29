@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedOption } from "../../../state/sideBar/selectedOptionSlice";
 import { setSelectedSubOption } from "../../../state/sideBar/selectedSubOptionSlice";
@@ -8,9 +7,9 @@ import { LockOpenIcon } from "@heroicons/react/24/outline";
 import menuData from "../../../menu.json";
 import { permissionsDict } from "../../../menuPermissions";
 
-const permissions = permissionsDict(menuData);
+const permissions = permissionsDict(menuData)
 
-function DesktopSideBar() {
+function MobilSideBar() {
   const userRoles = useSelector((state) => state.user.value.roles);
   const userPermissions = useSelector((state) => state.user.value.permissions);
   const selectedOption = useSelector((state) => state.selectedOption.value);
@@ -27,17 +26,17 @@ function DesktopSideBar() {
     }
   };
 
+  const handleSubOptionClick = (name) => {
+    dispatch(setSelectedSubOption({ name: name }));
+  };
+
   const hasPermissions = () => {
     if (userRoles.includes("Admin") || userPermissions.includes("superuser")) return true;
     return false;
   };
 
-  const handleSubOptionClick = (name) => {
-    dispatch(setSelectedSubOption({ name: name }));
-  };
-
   return (
-    <aside className="z-20 flex-shrink-0 hidden w-56 h-screen overflow-y-auto bg-purple_senthia-100 md:block">
+    <aside className="md:hidden z-10 fixed mt-12 w-56 h-screen overflow-y-auto bg-purple_senthia-100">
       <div className="pb-4 pt-2 text-white">
         <a className="flex flex-col items-center justify-items-center" href="#">
           <img className="w-36" src={logo} alt="" />
@@ -71,4 +70,4 @@ function DesktopSideBar() {
   );
 }
 
-export default DesktopSideBar;
+export default MobilSideBar;

@@ -1,0 +1,75 @@
+[
+  {
+    "name": "Dashboard",
+    "to": "",
+    "hasChildrens": false,
+    "childrens": [],
+    "roles": [],
+    "permissions": []
+  },
+  {
+    "name": "Forms",
+    "to": "",
+    "hasChildrens": false,
+    "childrens": [],
+    "roles": [],
+    "permissions": []
+  },
+  {
+    "name": "Ususarios",
+    "to": "#",
+    "hasChildrens": true,
+    "childrens": [
+      {
+        "name": "Listar usuarios",
+        "to": "list-user",
+        "roles": ["Jefes"],
+        "permissions": ["superuser"]
+      },
+      {
+        "name": "Solicitar creación",
+        "to": "request-user",
+        "roles": ["Jefes"],
+        "permissions": ["superuser"]
+      },
+      {
+        "name": "Aprobar creación",
+        "to": "aprove-user",
+        "roles": ["Jefes"],
+        "permissions": ["superuser"]
+      },
+      {
+        "name": "Crear usuario",
+        "to": "create-user",
+        "roles": ["Admin"],
+        "permissions": ["superuser"]
+      }
+    ],
+    "roles": ["Jefes", "Admin"],
+    "permissions": []
+  },
+  {
+    "name": "Cards",
+    "to": "",
+    "hasChildrens": false,
+    "childrens": [],
+    "roles": [],
+    "permissions": []
+  },
+  {
+    "name": "Charts",
+    "to": "",
+    "hasChildrens": false,
+    "childrens": [],
+    "roles": [],
+    "permissions": []
+  },
+  {
+    "name": "Buttons",
+    "to": "",
+    "hasChildrens": false,
+    "childrens": [],
+    "roles": ["Admin"],
+    "permissions": []
+  }
+]
